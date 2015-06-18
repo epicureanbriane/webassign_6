@@ -9,15 +9,15 @@
   <link rel="stylesheet" href="css/css.css">
 
   <!--引入初始化 Parse 的 js 檔案-->
-  <script type="text/javascript" src="<!--引入初始化 Parse 的 js 檔案-->"></script>
+  <script type="text/javascript" src="js/key.js"></script>
   <script  type="text/javascript">
     $(document).on('submit','#signUpForm',function(e){
        e.preventDefault();
     var user=new Parse.User();
-    user.set("username",$('#username').val());
-    user.set("email",$('#email').val());
-    user.set("passw",$('#password').val());
-    user.set("mobile",$('#mobile').val());
+    user.set("username",$("#username").val());
+    user.set("email",$("#email").emailVerified.val());
+    user.set("passw",$("#password").val());
+    user.set("mobile",$("#mobile").val());
 
     user.signup(null,{
       succes : function(user){
@@ -28,9 +28,10 @@
       },
       error : function(course,error){
         console.log(error);
-        alert(error,message);
+        alert("Error: "+error.message);
 
-      }/* console.log('signUp submit');
+      }
+       console.log("signUp submit");
       /* 請閱讀完 html 後在這裡填入送出表單後需要執行的程式碼 */
         // 提示1 : 記得使用 preventDefault 方程 避免表單轉址
 
@@ -64,7 +65,7 @@
       <div class="form-group">
         <label class="col-md-4 control-label" for="email">email*</label>
         <div class="col-md-4">
-        <input id="email" name="email" type="text" placeholder="email" class="form-control input-md" required="">
+        <input id="email" name="email" type="email" placeholder="email" class="form-control input-md" required="">
 
         </div>
       </div>

@@ -9,14 +9,12 @@
   <link rel="stylesheet" href="css/css.css">
 
   <!--引入初始化 Parse 的 js 檔案-->
-  <script type="text/javascript" src="js/key.js"></script>
+  <script type="text/javascript" src="<!--引入初始化 Parse 的 js 檔案-->"></script>
   <script  type="text/javascript">
   
     $(document).ready(function(){
-     console.log("登入前的 Parse.User.current()  : ",Parse.User.current()) ;
-      
       alert("未登入");
-      window.location="login.html";
+      window.location="logIn.html";
       return null;
       /* 顯示登入者名稱，避免未登入者進入此頁面*/
           //提示 1 : 可用轉址的方式，讓未登入的使用者轉址到 logIn.html
@@ -31,7 +29,7 @@ if (currentUser) {
     // do stuff with the user
 } else {
     alert("未登入");
-      window.location="login.html";
+      window.location="logIn.html";
       return null;
 }
       /* 執行登出動作，並轉址到 logIn 頁面*/
@@ -39,7 +37,7 @@ if (currentUser) {
 
       /* 結束 */
     });
-  $(#name).text()
+
   </script>
 </head>
 

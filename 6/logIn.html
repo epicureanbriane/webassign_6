@@ -17,7 +17,8 @@
     var username = $('#username').val() ;
     var password = $('#password').val() ;
     // 用 Parse.User.current() 判定使用者是否是登入的狀態，這裏還沒登入，會是 null
-    console.log("登入之前的 Parse.User.current()  : ", Parse.User.current()) ;
+    console.log("登入之前的 Parse.User.current()  : ", Parse.User.current());
+    return null;
     Parse.User.logIn( username , password , {
       success: function(user) {
         // 到 console 看看 Parse.User.current()  的東西
