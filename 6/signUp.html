@@ -13,11 +13,16 @@
   <script  type="text/javascript">
     $(document).on('submit','#signUpForm',function(e){
        e.preventDefault();
-    var user=new Parse.User();
+    var quser=new Parse.User();
     user.set("username",$("#username").val());
     user.set("email",$("#email").emailVerified.val());
     user.set("passw",$("#password").val());
-    user.set("mobile",$("#mobile").val());
+    
+     if(document.getElementById("-0").checked){
+        user.set("role", "teacher");
+      }else if(document.getElementById("-1").checked){
+        user.set("role", "student")
+      }
 
     user.signup(null,{
       succes : function(user){
@@ -28,7 +33,7 @@
       },
       error : function(course,error){
         console.log(error);
-        alert("Error: "+error.message);
+        alert("Error: " + error.message);
 
       }
        console.log("signUp submit");
