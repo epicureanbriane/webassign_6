@@ -1,11 +1,11 @@
 .favorite{
   display : none ;
 }
-
+p {background-image:url(https://d13yacurqjgara.cloudfront.net/users/22805/screenshots/571614/sorryimlate.jpg);}
 legend {
   margin:auto ;
   text-align: center;
-  padding-top: 30px;
+  padding-top: 45px;
   margin-bottom: 30px ;
   border: none;
 }
