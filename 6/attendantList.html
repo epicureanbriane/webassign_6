@@ -24,8 +24,8 @@
         window.location = 'index.html';
         return null;
       }
-      var WebUser = Parse.Object.extend("User");
-      var attend = new Parse.Query(WebUser);
+      var wUser = Parse.Object.extend("User");
+      var attend = new Parse.Query(wUser);
       attend.equalTo("come", true);
       attend.find({
         success : function(Array){
