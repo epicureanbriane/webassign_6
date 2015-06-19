@@ -1,7 +1,7 @@
 <!doctype html>
 <head>
   <meta charset="utf-8">
-  <title>註冊頁面</title>
+  <title>Registration Page</title>
   <meta name="viewport" content="width=device-width">
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
@@ -9,43 +9,46 @@
   <link rel="stylesheet" href="css/css.css">
 
   <!--引入初始化 Parse 的 js 檔案-->
-<!--<script type="text/javascript" src="引入初始化 Parse 的 js 檔案"></script>-->
   <script type="text/javascript" src="js/key.js"></script>
   <script  type="text/javascript">
     $(document).on('submit','#signUpForm',function(e){
-    webuser.set("come",false);
-      console.log('signUp submit');
-      /* 請閱讀完 html 後在這裡填入送出表單後需要執行的程式碼 */
-        // 提示1 : 記得使用 preventDefault 方程 避免表單轉址
-      e.preventDefault();
-      // var WebUser = Parse.Object.extend("WebUser");
-      // var webuser = new WebUser();
-      var webuser = new Parse.User();
 
-      webuser.set("username", $('#username').val());
-      webuser.set("email", $('#email').val());
-      webuser.set("password", $('#password').val());
-      webuser.set("come", false);
-      
-      if(document.getElementById("-0").checked){
-        webuser.set("role", "teacher");
-      }else if(document.getElementById("-1").checked){
-        webuser.set("role", "student")
+       console.log('signUp submit');
+       e.preventDefault();
+
+    var user=new Parse.User();
+    user.set("username",$("#username").val());
+    user.set("email",$("#email").emailVerified.val());
+    user.set("passw",$("#password").val());
+
+ if($('#-0').prop("checked")){
+        user.set("role" , "teacher");
+      }else {
+        user.set("role" , "student");
       }
 
-      webuser.save(null,{
-        success : function(user){
-          console.log(user);
-          alert("user save successfully!");
-        },
-        error : function(user, error){
-          console.log(error);
-          alert(error.message);
-        }
-      });
+    
+
+    user.signup(null,{
+      succes : function(user){
+        console.log(user);
+        alert("Registration Sucess,please login again!");
+        window.location="logIn.html" ;
+
+      },
+      error : function(course,error){
+        console.log(error);
+        alert("Error: " + error.message);
+
+      }
+      /* 請閱讀完 html 後在這裡填入送出表單後需要執行的程式碼 */
+        // 提示1 : 記得使用 preventDefault 方程 避免表單轉址
 
       /* 結束*/
-    });  //endof signUpBtn onSubmit
+     //endof signUpBtn onSubmit
+  
+    });
+    
   </script>
 </head>
 
@@ -56,7 +59,7 @@
       <fieldset>
 
       <!-- Form Name -->
-      <legend>註冊</legend>
+      <legend>Registration</legend>
 
       <!-- Text input-->
       <div class="form-group">
@@ -71,7 +74,7 @@
       <div class="form-group">
         <label class="col-md-4 control-label" for="email">email*</label>
         <div class="col-md-4">
-        <input id="email" name="email" type="text" placeholder="email" class="form-control input-md" required="">
+        <input id="email" name="email" type="email" placeholder="email" class="form-control input-md" required="">
 
         </div>
       </div>
@@ -87,15 +90,15 @@
 
       <!-- Role -->
       <div class="form-group">
-        <label class="col-md-4 control-label" for="role">角色*</label>
+        <label class="col-md-4 control-label" for="">Role*</label>
         <div class="col-md-4">
           <label class="radio-inline" for="-0">
             <input type="radio" name="role" id="-0" value="teacher" >
-            老師
+            Teacher
           </label>
           <label class="radio-inline" for="-1">
             <input type="radio" name="role" id="-1" value="student" checked="checked">
-            學生
+            Student
           </label>
         </div>
       </div>
@@ -104,8 +107,8 @@
       <div class="form-group">
         <label class="col-md-4 control-label" for="signUpBtn"></label>
         <div class="col-md-4">
-          <button id="signUpBtn" type="submit" name="signUpBtn" class="btn btn-primary">註冊</button>
-          <a class="btn" href="logIn.html">前往登入</a>
+          <button id="signUpBtn" name="signUpBtn" class="btn btn-primary">Registration</button>
+          <a class="btn" href="logIn.html">Login</a>
         </div>
       </div>
       </fieldset>
