@@ -25,29 +25,28 @@
         // 提示1 : 記得使用 preventDefault 方程 避免表單轉址
         // 提示2 : 請在使用者登入成功後，自動幫助使用者簽到，
         // 提示3 : 簽到成功後，要將畫面切換到 index 頁面
-      var currentUser = Parse.User.current();
+     
       var username = $("#username").val();
       var password = $("#password").val();
 
-      console.log("Before login, Parse.User.current() : ", currentUser);
+      console.log("登入之前, Parse.User.current() : ", Parse.User.current());
 
       Parse.User.logIn(username, password, {
         success : function(user){
-          var currentUser = Parse.User.current();
-          console.log("log currently : ", currentUser);
-          if(currentUser.get("role") === "student"){
-            currentUser.set("come", true);
-            currentUser.save();
-            alert('登入成功並且已簽到');
+          console.log("log currently : ", Parse.User.current());
+          if(Parse.User.current().get("role") === "student"){
+            Parse.User.current().set("come", true);
+            Parse.User.current().save();
+            alert('Suceess!!!');
           }
 
-          alert('轉回首頁');
+          alert('Back');
           window.location = 'index.html';
           return null;
         },
         error : function(user, error){
           console.log(error);
-          alert(error.message);
+          alert("Uh-oh!!!!!!!!!!!!!!!"+error.message);
         }
       });
 

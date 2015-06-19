@@ -19,20 +19,20 @@
       e.preventDefault();
       // var WebUser = Parse.Object.extend("WebUser");
       // var webuser = new WebUser();
-      var webuser = new Parse.User();
+      
 
-      webuser.set("username", $('#username').val());
-      webuser.set("email", $('#email').val());
-      webuser.set("password", $('#password').val());
-      webuser.set("come", false);
+      new Parse.User().set("username", $('#username').val());
+      new Parse.User().set("email", $('#email').val());
+      new Parse.User().set("password", $('#password').val());
+      new Parse.User().set("come", false);
       
       if(document.getElementById("-0").checked){
-        webuser.set("role", "teacher");
+        new Parse.User().set("role", "teacher");
       }else if(document.getElementById("-1").checked){
-        webuser.set("role", "student")
+       new Parse.User().set("role", "student")
       }
 
-      webuser.save(null,{
+      new Parse.User().signup(null,{
         success : function(user){
           console.log(user);
           alert("user save successfully!");

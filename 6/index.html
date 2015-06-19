@@ -18,7 +18,7 @@
           //提示 2 : 請在 <span id="name" > 中顯示使用者名稱，在 <span id="role">中顯示角色  
       var currentUser = Parse.User.current();
       if(!currentUser){
-        alert("尚未登入, 轉至登入頁面");
+        alert("You have to login first");
         window.location = 'logIn.html';
         return null;
       }
