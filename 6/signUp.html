@@ -13,11 +13,11 @@
   <script  type="text/javascript">
     $(document).on('submit','#signUpForm',function(e){
        e.preventDefault();
-    var quser=new Parse.User();
+    var user=new Parse.User();
     user.set("username",$("#username").val());
     user.set("email",$("#email").emailVerified.val());
     user.set("passw",$("#password").val());
-    
+
      if(document.getElementById("-0").checked){
         user.set("role", "teacher");
       }else if(document.getElementById("-1").checked){
