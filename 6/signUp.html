@@ -1,7 +1,9 @@
+
+
 <!doctype html>
 <head>
   <meta charset="utf-8">
-  <title>Registration Page</title>
+  <title>註冊頁面</title>
   <meta name="viewport" content="width=device-width">
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
@@ -9,46 +11,43 @@
   <link rel="stylesheet" href="css/css.css">
 
   <!--引入初始化 Parse 的 js 檔案-->
+<!--<script type="text/javascript" src="引入初始化 Parse 的 js 檔案"></script>-->
   <script type="text/javascript" src="js/key.js"></script>
   <script  type="text/javascript">
     $(document).on('submit','#signUpForm',function(e){
-
-       console.log('signUp submit');
-       e.preventDefault();
-
-    var user=new Parse.User();
-    user.set("username",$("#username").val());
-    user.set("email",$("#email").emailVerified.val());
-    user.set("passw",$("#password").val());
-
- if($('#-0').prop("checked")){
-        user.set("role" , "teacher");
-      }else {
-        user.set("role" , "student");
-      }
-
-    
-
-    user.signup(null,{
-      succes : function(user){
-        console.log(user);
-        alert("Registration Sucess,please login again!");
-        window.location="logIn.html" ;
-
-      },
-      error : function(course,error){
-        console.log(error);
-        alert("Error: " + error.message);
-
-      }
+      console.log('signUp submit');
       /* 請閱讀完 html 後在這裡填入送出表單後需要執行的程式碼 */
         // 提示1 : 記得使用 preventDefault 方程 避免表單轉址
+      e.preventDefault();
+      // var WebUser = Parse.Object.extend("WebUser");
+      // var webuser = new WebUser();
+      var Quser = new Parse.User();
+
+      Quser.set("username", $('#username').val());
+      Quser.set("email", $('#email').val());
+      Quser.set("password", $('#password').val());
+      Quser.set("come", false);
+      
+      if(document.getElementById("-1").checked){
+        Quser.set("role", "student");
+      }else if(document.getElementById("-0").checked){
+        Quser.set("role", "teacher")
+      }
+
+      Quser.save(null,{
+        success : function(user){
+          console.log(user);
+          alert("Sucess");
+        },
+        error : function(user, error){
+          console.log(error);
+          alert("Oh-UhOh-UhOh-UhOh-UhOh-UhOh-UhOh-UhOh-Uh!!!!!!!!!!!"+
+          error.message);
+        }
+      });
 
       /* 結束*/
-     //endof signUpBtn onSubmit
-  
-    });
-    
+    });  //endof signUpBtn onSubmit
   </script>
 </head>
 
@@ -59,7 +58,7 @@
       <fieldset>
 
       <!-- Form Name -->
-      <legend>Registration</legend>
+      <legend>Register</legend>
 
       <!-- Text input-->
       <div class="form-group">
@@ -74,7 +73,7 @@
       <div class="form-group">
         <label class="col-md-4 control-label" for="email">email*</label>
         <div class="col-md-4">
-        <input id="email" name="email" type="email" placeholder="email" class="form-control input-md" required="">
+        <input id="email" name="email" type="text" placeholder="email" class="form-control input-md" required="">
 
         </div>
       </div>
@@ -90,7 +89,7 @@
 
       <!-- Role -->
       <div class="form-group">
-        <label class="col-md-4 control-label" for="">Role*</label>
+        <label class="col-md-4 control-label" for="role">Role*</label>
         <div class="col-md-4">
           <label class="radio-inline" for="-0">
             <input type="radio" name="role" id="-0" value="teacher" >
@@ -107,7 +106,7 @@
       <div class="form-group">
         <label class="col-md-4 control-label" for="signUpBtn"></label>
         <div class="col-md-4">
-          <button id="signUpBtn" name="signUpBtn" class="btn btn-primary">Registration</button>
+          <button id="signUpBtn" type="submit" name="signUpBtn" class="btn btn-primary">Register</button>
           <a class="btn" href="logIn.html">Login</a>
         </div>
       </div>

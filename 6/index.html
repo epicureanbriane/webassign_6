@@ -15,18 +15,20 @@
       /* 顯示登入者名稱，避免未登入者進入此頁面*/
           //提示 1 : 可用轉址的方式，讓未登入的使用者轉址到 logIn.html
           //提示 2 : 請在 <span id="name" > 中顯示使用者名稱，在 <span id="role">中顯示角色  
-      var currentUser = Parse.User.current();
-      if(!currentUser){
-        alert("尚未登入, 轉至登入頁面");
-        window.location = 'logIn.html';
+    if(!Parse.User.current()){
+        }
+    else{
+        alert("You have to login first!!!!!!")
+        window.location = "logIn.html";
         return null;
-      }
-      var username = currentUser.get("username");
-      var role = currentUser.get("role");
-      $('#name').text(username);
-      $('#role').text(role);
-      console.log("username", username);
-      console.log("role", role);
+        } 
+        var username = Parse.User.current.get("username");
+        var role = Parse.User.current.get("role");
+        $('#name').text(username);
+        $('#role').text(role);
+        console.log("username", username);
+        console.log("role", role);
+          
     });
   
     $(document).on('click',"#logOut",function(){

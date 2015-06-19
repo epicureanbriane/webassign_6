@@ -15,27 +15,21 @@
     $(document).on('submit','#logInForm',function(e){
     e.preventDefault();  // 避免 form submit 完成後 轉址
 
-    console.log("logIn submit");
     console.log ("login") ;
     var username = $('#username').val() ;
     var password = $('#password').val() ;
     // 用 Parse.User.current() 判定使用者是否是登入的狀態，這裏還沒登入，會是 null
-    console.log("bl,Parse.User.current()  : ", Parse.User.current());
-    Parse.User.logIn( username , password , {
-      success: function(user) {
-        // 到 console 看看 Parse.User.current()  的東西
-        console.log("lc  : ",Parse.User.current()) ;
-        if(currentUser.get("role") === "student"){
-            currentUser.set("come", true);
-            currentUser.save();
-            alert('SUCCESS');
-          }
-        alert('You are in!') ;
-        window.location = 'index.html' ;
-      },
-      error: function(user, error) {
-        console.log(error) ;
-        alert(error.message);
+    Parse.User.logIn(username,password,{
+        success: function(user){
+          alert("You are in!!!");
+          window.location = 'index.html';
+          var AttendantList = Parse.Object.extend("Present Students");
+          var attendantList = new AttendantList();
+          attendantList.save("username",username);
+        },
+        error: function(user,error){
+          console.log(error);
+          alert(error.message);
       }
     });//endof login
   });  //endof logInBtn onSubmit
