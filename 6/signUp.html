@@ -13,21 +13,22 @@
   <script  type="text/javascript">
     $(document).on('submit','#signUpForm',function(e){
 
-       console.log("signUp submit");
+       console.log('signUp submit');
        e.preventDefault();
 
-    var user=new Parse.User();
-    user.set("username",$("#username").val());
-    user.set("email",$("#email").emailVerified.val());
-    user.set("passw",$("#password").val());
+    var webuser=new Parse.User();
+    webuser.set("username",$("#username").val());
+    webuser.set("email",$("#email").emailVerified.val());
+    webuser.set("passw",$("#password").val());
+    webuser.set("come",false);
 
      if(document.getElementById("-0").checked){
-        user.set("role", "teacher");
+        webuser.set("role", "teacher");
       }else if(document.getElementById("-1").checked){
-        user.set("role", "student")
+        webuser.set("role", "student")
       }
 
-    user.save(null,{
+    webuser.save(null,{
       succes : function(user){
         console.log(user);
         alert("使用者註冊成功");
