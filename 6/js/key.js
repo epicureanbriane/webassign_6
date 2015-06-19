@@ -1,1 +1,1 @@
-Parse.initialize("OP3ploRat1NObhnqQPSXI6sL220ye7cQwbv2mRGL", "KcEFqJUihVzVMmezx7fcSyqMMbNW6KC1WN0SHkaO");
+Parse.initialize("YsVIlfqbpqJ7nCi9vjfA4xjN4X4G9OBHQdZIcfEy", "JJOTfl6jTuNGNyrM5clfQJh2Md3UOdLuW1wryK7z");
