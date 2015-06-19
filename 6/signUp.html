@@ -12,7 +12,10 @@
   <script type="text/javascript" src="js/key.js"></script>
   <script  type="text/javascript">
     $(document).on('submit','#signUpForm',function(e){
+
+       console.log("signUp submit");
        e.preventDefault();
+
     var user=new Parse.User();
     user.set("username",$("#username").val());
     user.set("email",$("#email").emailVerified.val());
@@ -24,7 +27,7 @@
         user.set("role", "student")
       }
 
-    user.signup(null,{
+    user.save(null,{
       succes : function(user){
         console.log(user);
         alert("使用者註冊成功");
@@ -36,7 +39,6 @@
         alert("Error: " + error.message);
 
       }
-       console.log("signUp submit");
       /* 請閱讀完 html 後在這裡填入送出表單後需要執行的程式碼 */
         // 提示1 : 記得使用 preventDefault 方程 避免表單轉址
 
