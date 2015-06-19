@@ -19,20 +19,20 @@
       e.preventDefault();
       // var WebUser = Parse.Object.extend("WebUser");
       // var webuser = new WebUser();
-      
+      var QQuser = new Parse.User();
 
-      new Parse.User().set("username", $('#username').val());
-      new Parse.User().set("email", $('#email').val());
-      new Parse.User().set("password", $('#password').val());
-      new Parse.User().set("come", false);
+      QQuser.set("username", $('#username').val());
+      QQuser.set("email", $('#email').val());
+      QQuser.set("password", $('#password').val());
+      QQuser.set("come", false);
       
       if(document.getElementById("-0").checked){
-        new Parse.User().set("role", "teacher");
+        QQuser.set("role", "teacher");
       }else if(document.getElementById("-1").checked){
-       new Parse.User().set("role", "student")
+        QQuser.set("role", "student")
       }
 
-      new Parse.User().signup(null,{
+      QQuser.save(null,{
         success : function(user){
           console.log(user);
           alert("user save successfully!");
