@@ -9,45 +9,43 @@
   <link rel="stylesheet" href="css/css.css">
 
   <!--引入初始化 Parse 的 js 檔案-->
+<!--<script type="text/javascript" src="引入初始化 Parse 的 js 檔案"></script>-->
   <script type="text/javascript" src="js/key.js"></script>
   <script  type="text/javascript">
     $(document).on('submit','#signUpForm',function(e){
-
-       console.log('signUp submit');
-       e.preventDefault();
-
-    var webuser=new Parse.User();
-    webuser.set("username",$("#username").val());
-    webuser.set("email",$("#email").emailVerified.val());
-    webuser.set("passw",$("#password").val());
     webuser.set("come",false);
+      console.log('signUp submit');
+      /* 請閱讀完 html 後在這裡填入送出表單後需要執行的程式碼 */
+        // 提示1 : 記得使用 preventDefault 方程 避免表單轉址
+      e.preventDefault();
+      // var WebUser = Parse.Object.extend("WebUser");
+      // var webuser = new WebUser();
+      var webuser = new Parse.User();
 
-     if(document.getElementById("-0").checked){
+      webuser.set("username", $('#username').val());
+      webuser.set("email", $('#email').val());
+      webuser.set("password", $('#password').val());
+      webuser.set("come", false);
+      
+      if(document.getElementById("-0").checked){
         webuser.set("role", "teacher");
       }else if(document.getElementById("-1").checked){
         webuser.set("role", "student")
       }
 
-    webuser.save(null,{
-      succes : function(user){
-        console.log(user);
-        alert("使用者註冊成功");
-        window.location="logIn.html" ;
-
-      },
-      error : function(course,error){
-        console.log(error);
-        alert("Error: " + error.message);
-
-      }
-      /* 請閱讀完 html 後在這裡填入送出表單後需要執行的程式碼 */
-        // 提示1 : 記得使用 preventDefault 方程 避免表單轉址
+      webuser.save(null,{
+        success : function(user){
+          console.log(user);
+          alert("user save successfully!");
+        },
+        error : function(user, error){
+          console.log(error);
+          alert(error.message);
+        }
+      });
 
       /* 結束*/
-     //endof signUpBtn onSubmit
-  
-    });
-    
+    });  //endof signUpBtn onSubmit
   </script>
 </head>
 
@@ -73,7 +71,7 @@
       <div class="form-group">
         <label class="col-md-4 control-label" for="email">email*</label>
         <div class="col-md-4">
-        <input id="email" name="email" type="email" placeholder="email" class="form-control input-md" required="">
+        <input id="email" name="email" type="text" placeholder="email" class="form-control input-md" required="">
 
         </div>
       </div>
@@ -89,7 +87,7 @@
 
       <!-- Role -->
       <div class="form-group">
-        <label class="col-md-4 control-label" for="">角色*</label>
+        <label class="col-md-4 control-label" for="role">角色*</label>
         <div class="col-md-4">
           <label class="radio-inline" for="-0">
             <input type="radio" name="role" id="-0" value="teacher" >
@@ -106,7 +104,7 @@
       <div class="form-group">
         <label class="col-md-4 control-label" for="signUpBtn"></label>
         <div class="col-md-4">
-          <button id="signUpBtn" name="signUpBtn" class="btn btn-primary">註冊</button>
+          <button id="signUpBtn" type="submit" name="signUpBtn" class="btn btn-primary">註冊</button>
           <a class="btn" href="logIn.html">前往登入</a>
         </div>
       </div>
